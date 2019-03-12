@@ -1,4 +1,4 @@
-package java;
+package main;
 
 import java.util.Scanner;
 
@@ -11,15 +11,16 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.print("Hi, welcome to Gravity is a myth");
-        main_menu();
+        Main main = new Main();
+        main.main_menu();
     }
 
     /**
      * Main menu for the application
      * Allow to navigate to the different features
      */
-    private static void main_menu() {
-        System.out.println("");
+    private void main_menu() {
+        System.out.println();
         System.out.println("Select an option");
         System.out.println("1 - Log in a new workout");
         System.out.println("2 - Calculate warm up sets");
@@ -27,27 +28,27 @@ public class Main {
         System.out.println("4 - Settings");
         System.out.println("5 - exit");
 
-        //Take the user input
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Choose an option");
-        int n = scan.nextInt();
-        scan.close();
+        Input input = new Input();
+        String userInput = input.input("Choose an option");
+
+        Validation validate = new Validation();
+        validate.validate_user_input(userInput);
 
         //Redirect to a feature based on the user input
-        switch (n) {
-            case 1:
-                new_workout_menu();
+        switch (userInput) {
+            case "1":
+                newWorkoutMenu();
                 break;
-            case 2:
-                warmup_sets_menu();
+            case "2":
+                warmupSetsMenu();
                 break;
-            case 3:
-                previous_workouts();
+            case "3":
+                previousWorkouts();
                 break;
-            case 4:
+            case "4":
                 settings();
                 break;
-            case 5:
+            case "5":
                 exit();
                 break;
             default:
@@ -56,25 +57,31 @@ public class Main {
         }
     }
 
-    private static void new_workout_menu() {
+
+
+    private static void newWorkoutMenu() {
 //        TODO
         System.out.println("TODO");
-        main_menu();
+        Main main = new Main();
+        main.main_menu();
     }
-    private static void warmup_sets_menu(){
+    private static void warmupSetsMenu(){
 //        TODO
         System.out.println("TODO");
-        main_menu();
+        Main main = new Main();
+        main.main_menu();
     }
-    private static void previous_workouts(){
+    private static void previousWorkouts(){
 //        TODO
         System.out.println("TODO");
-        main_menu();
+        Main main = new Main();
+        main.main_menu();
     }
     private static void settings(){
 //        TODO
         System.out.println("TODO");
-        main_menu();
+        Main main = new Main();
+        main.main_menu();
     }
 
     /**
