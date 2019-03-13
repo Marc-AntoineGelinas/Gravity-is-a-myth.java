@@ -5,7 +5,7 @@ class Menus {
      * Main menu for the application
      * Allow to navigate to the different features
      */
-    void mainMenu() {
+    void mainMenu() throws Exception {
         System.out.println();
         System.out.println("Select an option");
         System.out.println("1 - Log in a new workout");
@@ -14,7 +14,7 @@ class Menus {
         System.out.println("4 - Settings");
         System.out.println("5 - exit");
 
-        String userInput = Input.input("Choose an option");
+        String userInput = Input.input("Choose an option", String.class);
 
         //Redirect to a feature based on the user input
         switch (userInput) {
@@ -40,34 +40,35 @@ class Menus {
         }
     }
 
-    private void newWorkoutMenu() {
+    private void newWorkoutMenu() throws Exception {
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
-    private void warmupSetsMenu() {
+    private void warmupSetsMenu() throws Exception {
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
-    private void previousWorkouts() {
+    private void previousWorkouts() throws Exception{
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
-    public void settingsMenu() {
+    void settingsMenu() throws Exception {
         System.out.println();
         System.out.println("Select an option");
         System.out.println("1 - Add a plate");
         System.out.println("2 - exit");
 
-        String userInput = Input.input("Choose an option");
+        String userInput = Input.input("Choose an option", String.class);
 
         Settings settings = new Settings();
         //Redirect to a feature based on the user input
+        assert userInput != null;
         switch (userInput) {
             case "1":
                 settings.addPlate();

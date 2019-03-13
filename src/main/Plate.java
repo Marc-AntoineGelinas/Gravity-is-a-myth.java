@@ -4,11 +4,16 @@ public class Plate implements Validable {
     private String unit;
     private double weight;
 
-    public void setUnit(String unit) {
+    Plate(String unit, double weight) {
+        this.unit = unit;
+        this.weight = weight;
+    }
+
+    void setUnit(String unit) {
         this.unit = unit;
     }
 
-    public void setWeight(double weight) {
+    void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -18,16 +23,6 @@ public class Plate implements Validable {
 
     public double getWeight() {
         return weight;
-    }
-
-    double validateWeight(String weight){
-        try {
-            return Double.parseDouble(weight);
-        } catch (NumberFormatException e) {
-            // TODO : Put a better error handling
-            System.out.println(e);
-            throw e;
-        }
     }
 
     @Override
