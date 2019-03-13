@@ -3,12 +3,9 @@ package main;
 import java.util.Scanner;
 
 class Input {
-    String input(String message){
-        Scanner scan = new Scanner(System.in);
+    final private static Scanner scan = new Scanner(System.in);
+    static String input(String message) {
         System.out.println(message);
-
-        String userInput = scan.nextLine();
-        scan.close();
-        return userInput;
+        return scan.nextLine();
     }
 }
