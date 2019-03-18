@@ -1,9 +1,11 @@
 package main;
 
 class Settings {
+
+
     void addPlate() throws Exception {
         System.out.println();
-        System.out.println("1 - kg plate");
+        System.out.println("1 - Kg plate");
         System.out.println("2 - lbs plate");
         System.out.println("3 - exit");
 
@@ -13,7 +15,7 @@ class Settings {
 
         switch (userInput) {
             case "1":
-                unit = "kg";
+                unit = "Kg";
                 break;
             case "2":
                 unit = "lbs";
@@ -31,10 +33,11 @@ class Settings {
         System.out.println("Enter the weight of the plate in " + unit);
         System.out.println("Enter 'unit' to change unit");
 
-        double weight;
-        do {
-            weight = Input.input("Weight : ", double.class);
-        } while (weight == 0);
+
+       Double weight = Input.input("Weight : ", Double.class);
+       if (weight == null)
+           addPlate();
+
 
 
         Plate plate = new Plate(unit, weight);
@@ -43,5 +46,7 @@ class Settings {
         plate.setWeight(weight);
         // TODO : Add plate to database
         System.out.print("Plate added");
+        Menus menus = new Menus();
+        menus.settingsMenu();
     }
 }

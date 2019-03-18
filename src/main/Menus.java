@@ -17,6 +17,7 @@ class Menus {
         String userInput = Input.input("Choose an option", String.class);
 
         //Redirect to a feature based on the user input
+        assert userInput != null;
         switch (userInput) {
             case "1":
                 newWorkoutMenu();
