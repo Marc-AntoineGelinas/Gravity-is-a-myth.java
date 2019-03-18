@@ -1,8 +1,9 @@
 package main;
 
+
 public class Plate implements Validable {
     private String unit;
-    private double weight;
+    private Double weight;
 
     Plate(String unit, double weight) {
         this.unit = unit;
@@ -27,7 +28,7 @@ public class Plate implements Validable {
 
     @Override
     public boolean isValid() {
-        if (!this.unit.equals("lbs") && !this.unit.equals("kg")){
+        if (!this.unit.equals("lbs") && !this.unit.equals("Kg")){
             System.out.println("Unit must be a valid type");
             return false;
         }
