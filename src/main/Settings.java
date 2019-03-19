@@ -2,7 +2,6 @@ package main;
 
 class Settings {
 
-
     void addPlate() throws Exception {
         System.out.println();
         System.out.println("1 - Kg plate");
@@ -33,20 +32,30 @@ class Settings {
         System.out.println("Enter the weight of the plate in " + unit);
         System.out.println("Enter 'unit' to change unit");
 
+        //TODO : Add unit change prompt
+        Double weight = Input.input("Weight : ", Double.class);
+        if (weight == null)
+            addPlate();
 
-       Double weight = Input.input("Weight : ", Double.class);
-       if (weight == null)
-           addPlate();
+        System.out.println();
+        System.out.println("Enter the name/brand of the plate");
+        //TODO : add validation
+        String name = Input.input("Name/Brand : ", String.class);
 
 
+        Equipement plate = new Plate(unit, weight, name);
 
-        Plate plate = new Plate(unit, weight);
-
-        plate.setUnit(unit);
-        plate.setWeight(weight);
         // TODO : Add plate to database
         System.out.print("Plate added");
         Menus menus = new Menus();
         menus.settingsMenu();
+    }
+
+    void deletePlate(){
+        //TODO
+    }
+
+    void modifyPlate(){
+        //TODO
     }
 }

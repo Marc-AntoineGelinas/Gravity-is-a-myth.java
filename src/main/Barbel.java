@@ -36,21 +36,6 @@ public class Barbel extends Equipement {
     }
 
     @Override
-    public void addEquipement() {
-        super.addEquipement();
-    }
-
-    @Override
-    public void deleteEquipement() {
-        super.deleteEquipement();
-    }
-
-    @Override
-    public void modifyEquipement() {
-        super.modifyEquipement();
-    }
-
-    @Override
     public boolean isValid() {
         return super.isValid();
     }

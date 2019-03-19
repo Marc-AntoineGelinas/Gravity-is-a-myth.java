@@ -5,6 +5,9 @@ public abstract class Equipement implements Validable {
     private Double weight;
     private String name;
 
+    public Equipement() {
+    }
+
     Equipement(String unit, Double weight, String name) {
         this.unit = unit;
         this.weight = weight;
@@ -35,17 +38,6 @@ public abstract class Equipement implements Validable {
         this.name = name;
     }
 
-    public void addEquipement() {
-        //TODO
-    }
-
-    public void deleteEquipement() {
-        //TODO
-    }
-
-    public void modifyEquipement() {
-        //TODO
-    }
 
     @Override
     public boolean isValid() {

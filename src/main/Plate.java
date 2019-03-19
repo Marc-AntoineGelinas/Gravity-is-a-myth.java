@@ -36,20 +36,6 @@ class Plate extends Equipement {
         super.setName(name);
     }
 
-    @Override
-    public void addEquipement() {
-        super.addEquipement();
-    }
-
-    @Override
-    public void deleteEquipement() {
-        super.deleteEquipement();
-    }
-
-    @Override
-    public void modifyEquipement() {
-        super.modifyEquipement();
-    }
 
     @Override
     public boolean isValid() {
