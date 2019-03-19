@@ -1,42 +1,58 @@
 package main;
 
 
-public class Plate implements Validable {
-    private String unit;
-    private Double weight;
-
-    Plate(String unit, double weight) {
-        this.unit = unit;
-        this.weight = weight;
+class Plate extends Equipement {
+    Plate(String unit, Double weight, String name) {
+        super(unit, weight, name);
     }
 
-    void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    void setWeight(double weight) {
-        this.weight = weight;
-    }
-
+    @Override
     public String getUnit() {
-        return unit;
+        return super.getUnit();
     }
 
-    public double getWeight() {
-        return weight;
+    @Override
+    public void setUnit(String unit) {
+        super.setUnit(unit);
+    }
+
+    @Override
+    public Double getWeight() {
+        return super.getWeight();
+    }
+
+    @Override
+    public void setWeight(Double weight) {
+        super.setWeight(weight);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    @Override
+    public void addEquipement() {
+        super.addEquipement();
+    }
+
+    @Override
+    public void deleteEquipement() {
+        super.deleteEquipement();
+    }
+
+    @Override
+    public void modifyEquipement() {
+        super.modifyEquipement();
     }
 
     @Override
     public boolean isValid() {
-        if (!this.unit.equals("lbs") && !this.unit.equals("Kg")){
-            System.out.println("Unit must be a valid type");
-            return false;
-        }
-        else if (this.weight <= 0) {
-            System.out.println("Weight must be positive and more than 0");
-            return false;
-        }
-        else
-            return true;
+        return super.isValid();
     }
 }
