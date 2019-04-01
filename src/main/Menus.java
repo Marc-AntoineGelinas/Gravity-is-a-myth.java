@@ -9,7 +9,7 @@ class Menus {
         System.out.println();
         System.out.println("Select an option");
         System.out.println("1 - Log in a new workout");
-        System.out.println("2 - Calculate warm up sets");
+        System.out.println("2 - Calculate warm up Sets");
         System.out.println("3 - See an previous workout");
         System.out.println("4 - Settings");
         System.out.println("5 - exit");
