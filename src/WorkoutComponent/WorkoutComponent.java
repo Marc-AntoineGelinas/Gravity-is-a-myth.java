@@ -5,16 +5,16 @@ Parent class for the different workout types
 Each different exercises are filed in a type and added into an array for their type
 This handles individual workout exercises
  */
-abstract class WorkoutComponent {
+public abstract class WorkoutComponent {
     private String name;
-    //TODO : Figure out how to change to to WorkoutComponent object
+    //TODO : Figure out how to change String to WorkoutComponent object
     private String type;
 
-    WorkoutComponent(){
+    public WorkoutComponent(){
 
     }
 
-    WorkoutComponent(String name, String type) {
+    public WorkoutComponent(String name, String type) {
         this.name = name;
         this.type = type;
     }
@@ -35,19 +35,26 @@ abstract class WorkoutComponent {
         this.type = type;
     }
 
-    public void insert(){
+
+
+
+    //Insert component into database
+    public void DBinsert(){
         //TODO
     }
 
-    public void delete(){
+    //Delete component from database
+    public void DBdelete(){
         //TODO
     }
 
-    public void update(){
+    //Update component from database
+    public void DBupdate(){
         //TODO
     }
 
-    public void select(){
+    //Select component from database
+    public void DBselect(){
         //TODO
     }
 }
