@@ -41,24 +41,36 @@ class Menus {
         }
     }
 
+    /**
+    Redirect to the new workout creator
+     */
     private void newWorkoutMenu() throws Exception {
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
+    /**
+    Redirect to the warmup sets calculator
+     */
     private void warmupSetsMenu() throws Exception {
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
+    /**
+    Redirect to the previous workouts menu
+     */
     private void previousWorkouts() throws Exception {
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
+    /**
+    Option selector for the settings menu
+     */
     void settingsMenu() throws Exception {
         System.out.println();
         System.out.println("Select an option");
@@ -95,7 +107,10 @@ class Menus {
         }
     }
 
-    private void plateSubmenu() throws Exception{
+    /**
+    Option selector for the plates settings Submenu
+     */
+    private void plateSubmenu() throws Exception {
         System.out.println();
         System.out.println("Select an option");
         System.out.println("1 - Add plate");
@@ -128,15 +143,24 @@ class Menus {
         }
     }
 
-    private void barbelSubmenu(){
+    /**
+    Option selector for the barbel settings sub menu
+   */
+    private void barbelSubmenu() {
 
     }
 
-    private void userSubmenu(){
+    /**
+    Option selector for the user settings sub menu
+   */
+    private void userSubmenu() {
 
     }
 
-    private void exercisesSubmenu(){
+    /**
+    Option selector for the exercises sub menu
+   */
+    private void exercisesSubmenu() {
 
     }
 }

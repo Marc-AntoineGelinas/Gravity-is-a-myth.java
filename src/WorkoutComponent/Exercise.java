@@ -12,6 +12,14 @@ public class Exercise extends WorkoutComponent {
     public Exercise() {
     }
 
+    public Exercise(String name, int series, int[] reps, float[] weight, Time[] rest) {
+        super(name, "Exercise");
+        this.series = series;
+        this.reps = reps;
+        this.weight = weight;
+        this.rest = rest;
+    }
+
     public Exercise(String name, int warmupSetsCount, int series, int[] reps, float[] weight, Time[] rest) {
         super(name, "Exercise");
         this.warmupSetsCount = warmupSetsCount;

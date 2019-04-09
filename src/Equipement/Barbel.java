@@ -1,8 +1,9 @@
-package main;
+package Equipement;
 
+import main.Equipement;
 
-class Plate extends Equipement {
-    Plate(String unit, Double weight, String name) {
+public class Barbel extends Equipement {
+    public Barbel(String unit, Double weight, String name) {
         super(unit, weight, name);
     }
 
@@ -35,7 +36,6 @@ class Plate extends Equipement {
     public void setName(String name) {
         super.setName(name);
     }
-
 
     @Override
     public boolean isValid() {

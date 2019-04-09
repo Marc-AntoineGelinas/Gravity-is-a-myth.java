@@ -1,5 +1,8 @@
 package main;
 
+import Equipement.Plate;
+import Equipement.Equipement;
+
 class Settings {
 
     void addPlate() throws Exception {

@@ -11,6 +11,13 @@ public class Sets {
     public Sets() {
     }
 
+    public Sets(int series, int[] reps, float[] weight, Time[] rest) {
+        this.series = series;
+        this.reps = reps;
+        this.weight = weight;
+        this.rest = rest;
+    }
+
     public int getSeries() {
         return series;
     }
