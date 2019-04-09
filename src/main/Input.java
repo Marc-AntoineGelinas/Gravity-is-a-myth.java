@@ -6,31 +6,44 @@ import java.util.Scanner;
 class Input {
     private final static Scanner scanner = new Scanner(System.in);
 
-    static <T> T input(String message, Class<T> c) throws InputMismatchException {
-
+    static <T> T input(String message, Class<T> c) throws InputMismatchException, NullPointerException {
         System.out.println(message);
         try {
             if (c == Integer.class) {
                 T value = c.cast(scanner.nextInt());
-                return value;
+                if (validateUserInput(value))
+                    return value;
             }
-            if (c == String.class){
+            if (c == String.class) {
                 T value = c.cast(scanner.nextLine());
-                return value;
+                if (validateUserInput(value))
+                    return value;
             }
-            if (c == Double.class){
+            if (c == Double.class) {
                 T value = c.cast(scanner.nextDouble());
-                return value;
+                if (validateUserInput(value))
+                    return value;
             }
-            if (c == Float.class){
+            if (c == Float.class) {
                 T value = c.cast(scanner.nextFloat());
-                return value;
+                if (validateUserInput(value))
+                    return value;
             }
 
         } catch (InputMismatchException e) {
             scanner.reset();
             System.out.println("Wrong value type.");
+        } catch (NullPointerException e){
+            scanner.reset();
+            System.out.println("Value cannot be empty.");
         }
         return null;
+    }
+
+    private static <T> boolean validateUserInput(T value) throws InputMismatchException, NullPointerException{
+        if (value == null || value.toString().trim().equals("")){
+            throw new NullPointerException();
+        }
+        return true;
     }
 }
