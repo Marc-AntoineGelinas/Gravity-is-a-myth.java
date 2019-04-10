@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Workout {
     private LocalDate workoutDateTime;
-    private ArrayList<Warmup> warmupList;
-    private ArrayList<Stretch> stretchList;
-    private ArrayList<Exercise> exerciseList;
-    private ArrayList<Cardio> cardioList;
-    private ArrayList<Cooldown> cooldownList;
+    private ArrayList<Warmup> warmupList = new ArrayList<Warmup>();
+    private ArrayList<Stretch> stretchList = new ArrayList<Stretch>();
+    private ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
+    private ArrayList<Cardio> cardioList = new ArrayList<Cardio>();
+    private ArrayList<Cooldown> cooldownList = new ArrayList<Cooldown>();
 
 
     public Workout() {

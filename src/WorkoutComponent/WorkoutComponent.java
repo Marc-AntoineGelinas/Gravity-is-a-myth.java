@@ -7,14 +7,13 @@ This handles individual workout exercises
  */
 public abstract class WorkoutComponent {
     private String name;
-    //TODO : Figure out how to change String to WorkoutComponent object
     private String type;
 
-    public WorkoutComponent(){
+    WorkoutComponent(){
 
     }
 
-    public WorkoutComponent(String name, String type) {
+    WorkoutComponent(String name, String type) {
         this.name = name;
         this.type = type;
     }

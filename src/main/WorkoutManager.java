@@ -4,23 +4,32 @@ import WorkoutComponent.*;
 
 import java.sql.Time;
 
-public class WorkoutManager {
+class WorkoutManager {
 
     /**
      * Add a workout or exit to the main menu
      */
     void createWorkout() {
-        System.out.println();
-        System.out.println("Create new workout?");
-        String userInput = Input.input("yes/no", String.class);
+        boolean again = true;
+        while (again) {
+            again = false;
+            System.out.println();
+            System.out.println("Create new workout?");
+            String userInput = Input.input("yes/no", String.class);
 
-        //TODO : Ajouter validation
-        if (userInput.toLowerCase().equals("yes")) {
-            Workout workout = new Workout();
-            configureWorkout(workout);
-        } else if (userInput.toLowerCase().equals("no")) {
-            Menus menus = new Menus();
-            menus.mainMenu();
+            //TODO : Ajouter validation
+            if (userInput.toLowerCase().equals("yes")) {
+                Workout workout = new Workout();
+                configureWorkout(workout);
+            }
+            else if (userInput.toLowerCase().equals("no")) {
+                Menus menus = new Menus();
+                menus.mainMenu();
+            }
+            else {
+                System.out.println("Invalid option. Choose an option again please");
+                again = true;
+            }
         }
     }
 
@@ -37,7 +46,6 @@ public class WorkoutManager {
         boolean again = true;
 
         while (again) {
-            again = false;
             options.optionsPrinter();
             String userInput = Input.input("Choose an option", String.class);
 
@@ -84,8 +92,8 @@ public class WorkoutManager {
      */
     private Time time() {
         //TODO : Add validations
-        int minutes = Input.input("For how much time (minutes) : ", int.class);
-        int seconds = Input.input("For how much time (seconds) : ", int.class);
+        int minutes = Input.input("For how much time (minutes) : ", Integer.class);
+        int seconds = Input.input("For how much time (seconds) : ", Integer.class);
         return new Time(0, minutes, seconds);
     }
 
@@ -109,7 +117,7 @@ public class WorkoutManager {
      */
     private int series() {
         //TODO : Add validation
-        return Input.input("How many series : ", int.class);
+        return Input.input("How many series : ", Integer.class);
     }
 
     /**
@@ -122,7 +130,7 @@ public class WorkoutManager {
         int[] reps = null;
         for (int x = 0; x < series; x++) {
             //TODO : Add validation
-            reps[x] = Input.input("How many reps for serie " + x + 1 + " : ", int.class);
+            reps[x] = Input.input("How many reps for serie " + x + 1 + " : ", Integer.class);
         }
         return reps;
     }
@@ -137,7 +145,7 @@ public class WorkoutManager {
         float[] weights = null;
         for (int x = 0; x < series; x++) {
             //TODO : Add validation
-            weights[x] = Input.input("How much weight for serie " + x + 1 + " : ", int.class);
+            weights[x] = Input.input("How much weight for serie " + x + 1 + " : ", Integer.class);
         }
         return weights;
     }
@@ -153,8 +161,8 @@ public class WorkoutManager {
         //1 less rest period since no rest after last serie
         for (int x = 0; x < series - 1; x++) {
             //TODO : Add validation
-            int minutes = Input.input("How many rest minutes for serie " + x + 1 + " : ", int.class);
-            int seconds = Input.input("How many rest seconds for serie " + x + 1 + " : ", int.class);
+            int minutes = Input.input("How many rest minutes for serie " + x + 1 + " : ", Integer.class);
+            int seconds = Input.input("How many rest seconds for serie " + x + 1 + " : ", Integer.class);
             rest[x] = new Time(0, minutes, seconds);
         }
         return rest;
@@ -169,7 +177,7 @@ public class WorkoutManager {
      */
     //TODO : Create warmup object
     private void warmupSets(Sets sets) {
-        int warmupSeries = Input.input("How many warmup series : ", int.class);
+        int warmupSeries = Input.input("How many warmup series : ", Integer.class);
         //Return the target weight for the first serie
         float weight = sets.getWeight()[0];
 
@@ -200,7 +208,7 @@ public class WorkoutManager {
         String name = name();
         Time time = time();
         //TODO : Add validation
-        int reps = Input.input("How many repetitions : ", int.class);
+        int reps = Input.input("How many repetitions : ", Integer.class);
         Stretch stretch = new Stretch(name, time, reps);
 
         workout.addStretch(stretch);
