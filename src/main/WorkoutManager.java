@@ -8,12 +8,11 @@ public class WorkoutManager {
 
     /**
      * Add a workout or exit to the main menu
-     * @throws Exception
      */
-    void createWorkout() throws Exception {
+    void createWorkout() {
         System.out.println();
         System.out.println("Create new workout?");
-        String userInput = Input.input("Yes/no", String.class);
+        String userInput = Input.input("yes/no", String.class);
 
         //TODO : Ajouter validation
         if (userInput.toLowerCase().equals("yes")) {
@@ -29,44 +28,48 @@ public class WorkoutManager {
      * Option selector for the creation of the workout
      * User is prompted to add a move to the workout
      * When done he can log the workout to his database
+     *
      * @param workout the current workout
      */
     private void configureWorkout(Workout workout) {
-        System.out.println();
-        System.out.println("1 - Add warmup");
-        System.out.println("2 - Add stretch");
-        System.out.println("3 - Add exercise");
-        System.out.println("4 - Add cardio");
-        System.out.println("5 - Add cooldown");
-        System.out.println("6 - Finish workout");
-        String userInput = Input.input("Choose an option", String.class);
+        String[] opts = {"Add warmup", "Add stretch", "Add exercise", "Add cardio", "Add cooldown", "Finish workout"};
+        Options options = new Options(opts);
+        boolean again = true;
 
-        switch (userInput) {
-            case "1":
-                addWarmupToWorkout(workout);
-                break;
-            case "2":
-                addStretchToWorkout(workout);
-                break;
-            case "3":
-                addExerciseToWorkout(workout);
-                break;
-            case "4":
-                addCardioToWorkout(workout);
-                break;
-            case "5":
-                addCooldownToWorkout(workout);
-                break;
-            case "6":
-                finishWorkout(workout);
-                break;
-            default:
-                System.out.println("Wrong option");
+        while (again) {
+            again = false;
+            options.optionsPrinter();
+            String userInput = Input.input("Choose an option", String.class);
+
+            switch (userInput) {
+                case "1":
+                    addWarmupToWorkout(workout);
+                    break;
+                case "2":
+                    addStretchToWorkout(workout);
+                    break;
+                case "3":
+                    addExerciseToWorkout(workout);
+                    break;
+                case "4":
+                    addCardioToWorkout(workout);
+                    break;
+                case "5":
+                    addCooldownToWorkout(workout);
+                    break;
+                case "6":
+                    finishWorkout(workout);
+                    break;
+                default:
+                    System.out.println("Invalid option. Choose an option again please.");
+                    again = true;
+            }
         }
     }
 
     /**
      * User given name for a move
+     *
      * @return the name of the move
      */
     private String name() {
@@ -76,6 +79,7 @@ public class WorkoutManager {
 
     /**
      * User given time for a given move
+     *
      * @return the time for a given move
      */
     private Time time() {
@@ -87,6 +91,7 @@ public class WorkoutManager {
 
     /**
      * Create a set
+     *
      * @return a set for the given exercise
      */
     private Sets createSet() {
@@ -99,6 +104,7 @@ public class WorkoutManager {
 
     /**
      * User given series for an exercise
+     *
      * @return the number of series for the set
      */
     private int series() {
@@ -108,6 +114,7 @@ public class WorkoutManager {
 
     /**
      * User given reps for each serie
+     *
      * @param series the number of series of the set
      * @return the reps for each series
      */
@@ -122,6 +129,7 @@ public class WorkoutManager {
 
     /**
      * User given weight for each serie
+     *
      * @param series the number of series of the set
      * @return the weight for each series
      */
@@ -136,6 +144,7 @@ public class WorkoutManager {
 
     /**
      * User given rest time inbetween series
+     *
      * @param series the number of series of the set
      * @return the rest time inbetween series
      */
@@ -155,6 +164,7 @@ public class WorkoutManager {
      * Create warmup series
      * Return a % of the target weight based on how many warmup series
      * Return a number of reps based on the reps of the series
+     *
      * @param sets the set to add warmup set
      */
     //TODO : Create warmup object
@@ -170,6 +180,7 @@ public class WorkoutManager {
 
     /**
      * Add a warmup set to the workout
+     *
      * @param workout the current workout
      */
     private void addWarmupToWorkout(Workout workout) {
@@ -182,6 +193,7 @@ public class WorkoutManager {
 
     /**
      * Add a stretch set to the workout
+     *
      * @param workout the current workout
      */
     private void addStretchToWorkout(Workout workout) {
@@ -196,6 +208,7 @@ public class WorkoutManager {
 
     /**
      * Add an exercise set to the workout
+     *
      * @param workout the current workout
      */
     private void addExerciseToWorkout(Workout workout) {
@@ -207,6 +220,7 @@ public class WorkoutManager {
 
     /**
      * Add a cardio set to the workout
+     *
      * @param workout the current workout
      */
     private void addCardioToWorkout(Workout workout) {
@@ -215,6 +229,7 @@ public class WorkoutManager {
 
     /**
      * Add a cooldown set to the workout
+     *
      * @param workout the current workout
      */
     private void addCooldownToWorkout(Workout workout) {
@@ -223,6 +238,7 @@ public class WorkoutManager {
 
     /**
      * Finish the workout and add to the user's database
+     *
      * @param workout the current workout
      */
 

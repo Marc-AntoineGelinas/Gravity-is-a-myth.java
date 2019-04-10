@@ -5,44 +5,51 @@ import Equipement.Equipement;
 
 class Settings {
 
-    void addPlate() throws Exception {
-        System.out.println();
-        System.out.println("1 - Kg plate");
-        System.out.println("2 - lbs plate");
-        System.out.println("3 - exit");
-
-        String userInput = Input.input("Choose an option", String.class);
-
+    void addPlate() {
+        String[] opts = {"Kg plate", "lbs plate", "Exit"};
+        Options options = new Options(opts);
+        boolean again = true;
         String unit = "";
 
-        switch (userInput) {
-            case "1":
-                unit = "Kg";
-                break;
-            case "2":
-                unit = "lbs";
-                break;
-            case "3":
-                Menus menus = new Menus();
-                menus.settingsMenu();
-                break;
-            default:
-                System.out.println("Invalid option. Choose an option again please.");
-                addPlate();
+        while (again) {
+            again = false;
+            options.optionsPrinter();
+            String userInput = Input.input("Choose an option", String.class);
+
+            switch (userInput) {
+                case "1":
+                    unit = "Kg";
+                    break;
+                case "2":
+                    unit = "lbs";
+                    break;
+                case "3":
+                    Menus menus = new Menus();
+                    menus.settingsMenu();
+                    break;
+                default:
+                    System.out.println("Invalid option. Choose an option again please.");
+                    again = true;
+            }
         }
 
         System.out.println();
         System.out.println("Enter the weight of the plate in " + unit);
-        System.out.println("Enter 'unit' to change unit");
+        System.out.println("Enter '0' to change unit");
 
-        //TODO : Add unit change prompt
-        Double weight = Input.input("Weight : ", Double.class);
-        if (weight == null)
-            addPlate();
+        Double weight = 0d;
+        do {
+            weight = Input.input("Weight : ", Double.class);
+            if (weight == 0)
+                if (unit.equals("Kg"))
+                    unit = "lbs";
+                if (unit.equals("lbs"))
+                    unit = "Kg";
+        } while (weight != 0);
+
 
         System.out.println();
         System.out.println("Enter the name/brand of the plate");
-        //TODO : add validation
         String name = Input.input("Name/Brand : ", String.class);
 
 
@@ -54,11 +61,11 @@ class Settings {
         menus.settingsMenu();
     }
 
-    void deletePlate(){
+    void deletePlate() {
         //TODO
     }
 
-    void modifyPlate(){
+    void modifyPlate() {
         //TODO
     }
 }

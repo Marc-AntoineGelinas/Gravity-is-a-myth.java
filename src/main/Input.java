@@ -6,8 +6,18 @@ import java.util.Scanner;
 class Input {
     private final static Scanner scanner = new Scanner(System.in);
 
-    static <T> T input(String message, Class<T> c) throws InputMismatchException, NullPointerException {
-        System.out.println(message);
+
+    static <T> T input(String message, Class<T> c) {
+        T value;
+        do {
+            System.out.println(message);
+            value = inputScanner(c);
+        } while (value == null);
+        return value;
+    }
+
+    private static <T> T inputScanner(Class<T> c) throws InputMismatchException, NullPointerException {
+
         try {
             if (c == Integer.class) {
                 T value = c.cast(scanner.nextInt());
@@ -29,19 +39,20 @@ class Input {
                 if (validateUserInput(value))
                     return value;
             }
-
         } catch (InputMismatchException e) {
             scanner.reset();
             System.out.println("Wrong value type.");
-        } catch (NullPointerException e){
+            return null;
+        } catch (NullPointerException e) {
             scanner.reset();
             System.out.println("Value cannot be empty.");
+            return null;
         }
         return null;
     }
 
-    private static <T> boolean validateUserInput(T value) throws InputMismatchException, NullPointerException{
-        if (value == null || value.toString().trim().equals("")){
+    private static <T> boolean validateUserInput(T value) throws InputMismatchException, NullPointerException {
+        if (value == null || value.toString().trim().equals("")) {
             throw new NullPointerException();
         }
         return true;

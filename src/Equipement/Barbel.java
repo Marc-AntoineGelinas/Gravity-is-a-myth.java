@@ -1,6 +1,5 @@
 package Equipement;
 
-import main.Equipement;
 
 public class Barbel extends Equipement {
     public Barbel(String unit, Double weight, String name) {

@@ -5,162 +5,167 @@ class Menus {
      * Main menu for the application
      * Allow to navigate to the different features
      */
-    void mainMenu() throws Exception {
-        System.out.println();
-        System.out.println("Select an option");
-        System.out.println("1 - Log in a new workout");
-        System.out.println("2 - Calculate warm up Sets");
-        System.out.println("3 - See a previous workout");
-        System.out.println("4 - Settings");
-        System.out.println("5 - exit");
+    void mainMenu() {
+        String[] opts = {"Log in a new workout", "Calculate warm up Sets", "See a previous workout", "Settings", "Exit"};
+        Options options = new Options(opts);
+        boolean again = true;
 
-        String userInput = Input.input("Choose an option", String.class);
+        while (again) {
+            again = false;
+            options.optionsPrinter();
+            String userInput = Input.input("Choose an option", String.class);
 
-        //Redirect to a feature based on the user input
-        assert userInput != null;
-        switch (userInput) {
-            case "1":
-                newWorkoutMenu();
-                break;
-            case "2":
-                warmupSetsMenu();
-                break;
-            case "3":
-                previousWorkouts();
-                break;
-            case "4":
-                settingsMenu();
-                break;
-            case "5":
-                Main main = new Main();
-                main.exit();
-                break;
-            default:
-                System.out.println("Invalid option. Choose an option again please.");
-                mainMenu();
+            //Redirect to a feature based on the user input
+            assert userInput != null;
+            switch (userInput) {
+                case "1":
+                    newWorkoutMenu();
+                    break;
+                case "2":
+                    warmupSetsMenu();
+                    break;
+                case "3":
+                    previousWorkouts();
+                    break;
+                case "4":
+                    settingsMenu();
+                    break;
+                case "5":
+                    Main main = new Main();
+                    main.exit();
+                    break;
+                default:
+                    System.out.println("Invalid option. Choose a valid option please.");
+                    again = true;
+            }
         }
     }
 
     /**
-    Redirect to the new workout creator
+     * Redirect to the new workout creator
      */
-    private void newWorkoutMenu() throws Exception {
+    private void newWorkoutMenu() {
+        WorkoutManager workout = new WorkoutManager();
+        workout.createWorkout();
+    }
+
+    /**
+     * Redirect to the warmup sets calculator
+     */
+    private void warmupSetsMenu() {
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
     /**
-    Redirect to the warmup sets calculator
+     * Redirect to the previous workouts menu
      */
-    private void warmupSetsMenu() throws Exception {
+    private void previousWorkouts() {
 //        TODO
         System.out.println("TODO");
         mainMenu();
     }
 
     /**
-    Redirect to the previous workouts menu
+     * Option selector for the settings menu
      */
-    private void previousWorkouts() throws Exception {
-//        TODO
-        System.out.println("TODO");
-        mainMenu();
-    }
+    void settingsMenu() {
+        String[] opts = {"Plates", "Barbel", "User", "Exercises", "Exit"};
+        Options options = new Options(opts);
+        boolean again = true;
 
-    /**
-    Option selector for the settings menu
-     */
-    void settingsMenu() throws Exception {
-        System.out.println();
-        System.out.println("Select an option");
-        System.out.println("1 - Plates");
-        System.out.println("2 - Barbel");
-        System.out.println("3 - User");
-        System.out.println("4 - Exercises");
-        System.out.println("5 - exit");
+        while (again) {
+            again = false;
+            options.optionsPrinter();
 
-        String userInput = Input.input("Choose an option", String.class);
+            String userInput = Input.input("Choose an option", String.class);
 
-        //Redirect to a feature based on the user input
-        assert userInput != null;
-        switch (userInput) {
-            case "1":
-                plateSubmenu();
-                break;
-            case "2":
-                barbelSubmenu();
-                break;
-            case "3":
-                userSubmenu();
-                break;
-            case "4":
-                exercisesSubmenu();
-                break;
-            case "5":
-                Main main = new Main();
-                main.exit();
-                break;
-            default:
-                System.out.println("Invalid option. Choose an option again please.");
-                settingsMenu();
+            //Redirect to a feature based on the user input
+            switch (userInput) {
+                case "1":
+                    plateSubmenu();
+                    break;
+                case "2":
+                    barbelSubmenu();
+                    break;
+                case "3":
+                    userSubmenu();
+                    break;
+                case "4":
+                    exercisesSubmenu();
+                    break;
+                case "5":
+                    Main main = new Main();
+                    main.exit();
+                    break;
+                default:
+                    System.out.println("Invalid option. Choose a valid option please.");
+                    again = true;
+            }
         }
     }
 
     /**
-    Option selector for the plates settings Submenu
+     * Option selector for the plates settings Submenu
      */
-    private void plateSubmenu() throws Exception {
-        System.out.println();
-        System.out.println("Select an option");
-        System.out.println("1 - Add plate");
-        System.out.println("2 - Remove plate");
-        System.out.println("3 - Modify plate");
-        System.out.println("4 - exit");
+    private void plateSubmenu() {
+        String[] opts = {"Add plate", "Remove plate", "Modify plate", "Exit"};
+        Options options = new Options(opts);
+        boolean again = true;
 
-        String userInput = Input.input("Choose an option", String.class);
+        while (again) {
+            again = false;
+            options.optionsPrinter();
+            String userInput = Input.input("Choose an option", String.class);
 
-        Settings settings = new Settings();
-        //Redirect to a feature based on the user input
-        assert userInput != null;
-        switch (userInput) {
-            case "1":
-                settings.addPlate();
-                break;
-            case "2":
-                settings.deletePlate();
-                break;
-            case "3":
-                settings.modifyPlate();
-                break;
-            case "4":
-                Main main = new Main();
-                main.exit();
-                break;
-            default:
-                System.out.println("Invalid option. Choose an option again please.");
-                settingsMenu();
+            Settings settings = new Settings();
+            //Redirect to a feature based on the user input
+            switch (userInput) {
+                case "1":
+                    settings.addPlate();
+                    break;
+                case "2":
+                    settings.deletePlate();
+                    break;
+                case "3":
+                    settings.modifyPlate();
+                    break;
+                case "4":
+                    Main main = new Main();
+                    main.exit();
+                    break;
+                default:
+                    System.out.println("Invalid option. Choose a valid option please.");
+                    again = true;
+            }
         }
     }
 
     /**
-    Option selector for the barbel settings sub menu
-   */
+     * Option selector for the barbel settings sub menu
+     */
     private void barbelSubmenu() {
-
+        //TODO
+        System.out.println("TODO");
+        settingsMenu();
     }
 
     /**
-    Option selector for the user settings sub menu
-   */
+     * Option selector for the user settings sub menu
+     */
     private void userSubmenu() {
-
+        //TODO
+        System.out.println("TODO");
+        settingsMenu();
     }
 
     /**
-    Option selector for the exercises sub menu
-   */
+     * Option selector for the exercises sub menu
+     */
     private void exercisesSubmenu() {
-
+        //TODO
+        System.out.println("TODO");
+        settingsMenu();
     }
 }
