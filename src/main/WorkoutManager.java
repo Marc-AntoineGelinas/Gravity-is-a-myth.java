@@ -15,14 +15,14 @@ class WorkoutManager {
             again = false;
             System.out.println();
             System.out.println("Create new workout?");
-            String userInput = Input.input("yes/no", String.class);
+            Input<String> userInput = new Input<>("yes/no", String.class);
 
             //TODO : Ajouter validation
-            if (userInput.toLowerCase().equals("yes")) {
+            if (userInput.getValue().equals("yes")) {
                 Workout workout = new Workout();
                 configureWorkout(workout);
             }
-            else if (userInput.toLowerCase().equals("no")) {
+            else if (userInput.getValue().equals("no")) {
                 Menus menus = new Menus();
                 menus.mainMenu();
             }
@@ -47,9 +47,10 @@ class WorkoutManager {
 
         while (again) {
             options.optionsPrinter();
-            String userInput = Input.input("Choose an option", String.class);
+            Input<String> userInput = new Input<>("Choose an option : ", String.class);
 
-            switch (userInput) {
+
+            switch (userInput.getValue()) {
                 case "1":
                     addWarmupToWorkout(workout);
                     break;
@@ -66,6 +67,7 @@ class WorkoutManager {
                     addCooldownToWorkout(workout);
                     break;
                 case "6":
+                    again = false;
                     finishWorkout(workout);
                     break;
                 default:
@@ -82,7 +84,8 @@ class WorkoutManager {
      */
     private String name() {
         //TODO : Add validations
-        return Input.input("Name of the warmup : ", String.class);
+        Input<String> name = new Input<>("Name of the warmup : ", String.class);
+        return name.getValue();
     }
 
     /**
@@ -92,9 +95,9 @@ class WorkoutManager {
      */
     private Time time() {
         //TODO : Add validations
-        int minutes = Input.input("For how much time (minutes) : ", Integer.class);
-        int seconds = Input.input("For how much time (seconds) : ", Integer.class);
-        return new Time(0, minutes, seconds);
+        Input<Integer> minutes = new Input<>("For how much time (minutes) : ", Integer.class);
+        Input<Integer> seconds = new Input<>("For how much time (seconds) : ", Integer.class);
+        return new Time(0, minutes.getValue(), seconds.getValue());
     }
 
     /**
@@ -117,7 +120,8 @@ class WorkoutManager {
      */
     private int series() {
         //TODO : Add validation
-        return Input.input("How many series : ", Integer.class);
+        Input<Integer> series = new Input<>("How many series : ", Integer.class);
+        return series.getValue();
     }
 
     /**
@@ -130,7 +134,8 @@ class WorkoutManager {
         int[] reps = null;
         for (int x = 0; x < series; x++) {
             //TODO : Add validation
-            reps[x] = Input.input("How many reps for serie " + x + 1 + " : ", Integer.class);
+            Input<Integer> rep = new Input<>("How many reps for serie " + x + 1 + " : ", Integer.class);
+            reps[x] = rep.getValue();
         }
         return reps;
     }
@@ -145,7 +150,8 @@ class WorkoutManager {
         float[] weights = null;
         for (int x = 0; x < series; x++) {
             //TODO : Add validation
-            weights[x] = Input.input("How much weight for serie " + x + 1 + " : ", Integer.class);
+            Input<Integer> weight = new Input<>("How much weight for serie " + x + 1 + " : ", Integer.class);
+            weights[x] = weight.getValue();
         }
         return weights;
     }
@@ -161,9 +167,9 @@ class WorkoutManager {
         //1 less rest period since no rest after last serie
         for (int x = 0; x < series - 1; x++) {
             //TODO : Add validation
-            int minutes = Input.input("How many rest minutes for serie " + x + 1 + " : ", Integer.class);
-            int seconds = Input.input("How many rest seconds for serie " + x + 1 + " : ", Integer.class);
-            rest[x] = new Time(0, minutes, seconds);
+            Input<Integer> minutes = new Input<>("How many rest minutes for serie " + x + 1 + " : ", Integer.class);
+            Input<Integer> seconds = new Input<>("How many rest seconds for serie " + x + 1 + " : ", Integer.class);
+            rest[x] = new Time(0, minutes.getValue(), seconds.getValue());
         }
         return rest;
     }
@@ -177,7 +183,8 @@ class WorkoutManager {
      */
     //TODO : Create warmup object
     private void warmupSets(Sets sets) {
-        int warmupSeries = Input.input("How many warmup series : ", Integer.class);
+        Input<Integer> warmupSeries = new Input<>("How many warmup series : ", Integer.class);
+
         //Return the target weight for the first serie
         float weight = sets.getWeight()[0];
 
@@ -197,6 +204,7 @@ class WorkoutManager {
         Warmup warmup = new Warmup(name, time);
 
         workout.addWarmup(warmup);
+        System.out.println("Warm up added successfully.");
     }
 
     /**
@@ -208,10 +216,11 @@ class WorkoutManager {
         String name = name();
         Time time = time();
         //TODO : Add validation
-        int reps = Input.input("How many repetitions : ", Integer.class);
-        Stretch stretch = new Stretch(name, time, reps);
+        Input<Integer> reps = new Input<>("How many repetitions : ", Integer.class);
+        Stretch stretch = new Stretch(name, time, reps.getValue());
 
         workout.addStretch(stretch);
+        System.out.println("Stretch added successfully.");
     }
 
     /**
@@ -223,7 +232,7 @@ class WorkoutManager {
         String name = name();
         Sets sets = createSet();
         warmupSets(sets);
-
+        //TODO : Finish implementation
     }
 
     /**

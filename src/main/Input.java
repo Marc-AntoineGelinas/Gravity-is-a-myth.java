@@ -3,20 +3,19 @@ package main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class Input {
-    private final static Scanner scanner = new Scanner(System.in);
+class Input<T> {
+    private Scanner scanner = new Scanner(System.in);
+    private T value;
 
-
-    static <T> T input(String message, Class<T> c) {
-        T value;
+    Input(String message, Class<T> c) {
         do {
             System.out.println(message);
             value = inputScanner(c);
         } while (value == null);
-        return value;
+        setValue(value);
     }
 
-    private static <T> T inputScanner(Class<T> c) throws InputMismatchException, NullPointerException {
+    private T inputScanner(Class<T> c) throws InputMismatchException, NullPointerException {
 
         try {
             if (c == Integer.class) {
@@ -56,5 +55,21 @@ class Input {
             throw new NullPointerException();
         }
         return true;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
     }
 }

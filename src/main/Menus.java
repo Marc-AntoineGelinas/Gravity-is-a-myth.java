@@ -13,11 +13,10 @@ class Menus {
         while (again) {
             again = false;
             options.optionsPrinter();
-            String userInput = Input.input("Choose an option", String.class);
+            Input<String> userInput = new Input<>("Choose an option", String.class);
 
             //Redirect to a feature based on the user input
-            assert userInput != null;
-            switch (userInput) {
+            switch (userInput.getValue()) {
                 case "1":
                     newWorkoutMenu();
                     break;
@@ -79,10 +78,10 @@ class Menus {
             again = false;
             options.optionsPrinter();
 
-            String userInput = Input.input("Choose an option", String.class);
+            Input<String> userInput = new Input<>("Choose an option", String.class);
 
             //Redirect to a feature based on the user input
-            switch (userInput) {
+            switch (userInput.getValue()) {
                 case "1":
                     plateSubmenu();
                     break;
@@ -117,11 +116,11 @@ class Menus {
         while (again) {
             again = false;
             options.optionsPrinter();
-            String userInput = Input.input("Choose an option", String.class);
+            Input<String> userInput = new Input<>("Choose an option", String.class);
 
             Settings settings = new Settings();
             //Redirect to a feature based on the user input
-            switch (userInput) {
+            switch (userInput.getValue()) {
                 case "1":
                     settings.addPlate();
                     break;

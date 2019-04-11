@@ -14,9 +14,9 @@ class Settings {
         while (again) {
             again = false;
             options.optionsPrinter();
-            String userInput = Input.input("Choose an option", String.class);
+            Input<String> userInput = new Input<>("Choose an option", String.class);
 
-            switch (userInput) {
+            switch (userInput.getValue()) {
                 case "1":
                     unit = "Kg";
                     break;
@@ -37,23 +37,23 @@ class Settings {
         System.out.println("Enter the weight of the plate in " + unit);
         System.out.println("Enter '0' to change unit");
 
-        Double weight = 0d;
+        Input<Double> weight;
         do {
-            weight = Input.input("Weight : ", Double.class);
-            if (weight == 0)
+            weight = new Input<>("Weight : ", Double.class);
+            if (weight.getValue() == 0)
                 if (unit.equals("Kg"))
                     unit = "lbs";
                 if (unit.equals("lbs"))
                     unit = "Kg";
-        } while (weight != 0);
+        } while (weight.getValue() != 0);
 
 
         System.out.println();
         System.out.println("Enter the name/brand of the plate");
-        String name = Input.input("Name/Brand : ", String.class);
+        Input<String> name = new Input<>("Name/Brand : ", String.class);
 
 
-        Equipement plate = new Plate(unit, weight, name);
+        Equipement plate = new Plate(unit, weight.getValue(), name.getValue());
 
         // TODO : Add plate to database
         System.out.print("Plate added");
