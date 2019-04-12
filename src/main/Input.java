@@ -3,11 +3,11 @@ package main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class Input<T> {
+public class Input<T> {
     private Scanner scanner = new Scanner(System.in);
     private T value;
 
-    Input(String message, Class<T> c) {
+    public Input(String message, Class<T> c) {
         do {
             System.out.println(message);
             value = inputScanner(c);

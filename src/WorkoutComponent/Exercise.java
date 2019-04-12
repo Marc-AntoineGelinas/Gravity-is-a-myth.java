@@ -1,71 +1,37 @@
 package WorkoutComponent;
 
-import java.sql.Time;
+import main.Input;
+
 
 public class Exercise extends WorkoutComponent {
-    private int warmupSetsCount;
-    private int series;
-    private int[] reps;
-    private float[] weight;
-    private Time[] rest;
+    private Sets sets;
+    private Sets warmUpSets;
 
     public Exercise() {
+        super.setType("Exercise");
+        nameInput();
+        this.sets = new Sets();
+        this.warmUpSets = new WarmUpSets();
     }
 
-    public Exercise(String name, int series, int[] reps, float[] weight, Time[] rest) {
-        super(name, "Exercise");
-        this.series = series;
-        this.reps = reps;
-        this.weight = weight;
-        this.rest = rest;
+    private void nameInput() {
+        Input<String> name = new Input<>("Name of the exercise : ", String.class);
+        super.setName(name.getValue());
     }
 
-    public Exercise(String name, int warmupSetsCount, int series, int[] reps, float[] weight, Time[] rest) {
-        super(name, "Exercise");
-        this.warmupSetsCount = warmupSetsCount;
-        this.series = series;
-        this.reps = reps;
-        this.weight = weight;
-        this.rest = rest;
+    public Sets getSets() {
+        return sets;
     }
 
-    public int getWarmupSetsCount() {
-        return warmupSetsCount;
+    public void setSets(Sets sets) {
+        this.sets = sets;
     }
 
-    public void setWarmupSetsCount(int warmupSetsCount) {
-        this.warmupSetsCount = warmupSetsCount;
+    public Sets getWarmUpSets() {
+        return warmUpSets;
     }
 
-    public int getSeries() {
-        return series;
-    }
-
-    public void setSeries(int series) {
-        this.series = series;
-    }
-
-    public int[] getReps() {
-        return reps;
-    }
-
-    public void setReps(int[] reps) {
-        this.reps = reps;
-    }
-
-    public float[] getWeight() {
-        return weight;
-    }
-
-    public void setWeight(float[] weight) {
-        this.weight = weight;
-    }
-
-    public Time[] getRest() {
-        return rest;
-    }
-
-    public void setRest(Time[] rest) {
-        this.rest = rest;
+    public void setWarmUpSets(Sets warmUpSets) {
+        this.warmUpSets = warmUpSets;
     }
 }

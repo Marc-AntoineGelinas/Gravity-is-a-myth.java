@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Workout {
     private LocalDate workoutDateTime;
-    private ArrayList<Warmup> warmupList = new ArrayList<Warmup>();
+    private ArrayList<WarmUp> warmUpList = new ArrayList<WarmUp>();
     private ArrayList<Stretch> stretchList = new ArrayList<Stretch>();
     private ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
     private ArrayList<Cardio> cardioList = new ArrayList<Cardio>();
@@ -24,8 +24,8 @@ public class Workout {
         this.workoutDateTime = workoutDateTime;
     }
 
-    public ArrayList<Warmup> getWarmup() {
-        return warmupList;
+    public ArrayList<WarmUp> getWarmup() {
+        return warmUpList;
     }
 
     public ArrayList<Stretch> getStretch() {
@@ -44,8 +44,8 @@ public class Workout {
         return cooldownList;
     }
 
-    public void addWarmup(Warmup warmup) {
-        warmupList.add(warmup);
+    public void addWarmup(WarmUp warmup) {
+        warmUpList.add(warmup);
     }
 
     public void addStretch(Stretch stretch) {

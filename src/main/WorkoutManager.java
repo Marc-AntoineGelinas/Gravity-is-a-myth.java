@@ -2,8 +2,6 @@ package main;
 
 import WorkoutComponent.*;
 
-import java.sql.Time;
-
 class WorkoutManager {
 
     /**
@@ -21,12 +19,10 @@ class WorkoutManager {
             if (userInput.getValue().equals("yes")) {
                 Workout workout = new Workout();
                 configureWorkout(workout);
-            }
-            else if (userInput.getValue().equals("no")) {
+            } else if (userInput.getValue().equals("no")) {
                 Menus menus = new Menus();
                 menus.mainMenu();
-            }
-            else {
+            } else {
                 System.out.println("Invalid option. Choose an option again please");
                 again = true;
             }
@@ -52,7 +48,7 @@ class WorkoutManager {
 
             switch (userInput.getValue()) {
                 case "1":
-                    addWarmupToWorkout(workout);
+                    addWarmUpToWorkout(workout);
                     break;
                 case "2":
                     addStretchToWorkout(workout);
@@ -78,132 +74,13 @@ class WorkoutManager {
     }
 
     /**
-     * User given name for a move
-     *
-     * @return the name of the move
-     */
-    private String name() {
-        //TODO : Add validations
-        Input<String> name = new Input<>("Name of the warmup : ", String.class);
-        return name.getValue();
-    }
-
-    /**
-     * User given time for a given move
-     *
-     * @return the time for a given move
-     */
-    private Time time() {
-        //TODO : Add validations
-        Input<Integer> minutes = new Input<>("For how much time (minutes) : ", Integer.class);
-        Input<Integer> seconds = new Input<>("For how much time (seconds) : ", Integer.class);
-        return new Time(0, minutes.getValue(), seconds.getValue());
-    }
-
-    /**
-     * Create a set
-     *
-     * @return a set for the given exercise
-     */
-    private Sets createSet() {
-        int series = series();
-        int[] reps = reps(series);
-        float[] weight = weight(series);
-        Time[] rest = rest(series);
-        return new Sets(series, reps, weight, rest);
-    }
-
-    /**
-     * User given series for an exercise
-     *
-     * @return the number of series for the set
-     */
-    private int series() {
-        //TODO : Add validation
-        Input<Integer> series = new Input<>("How many series : ", Integer.class);
-        return series.getValue();
-    }
-
-    /**
-     * User given reps for each serie
-     *
-     * @param series the number of series of the set
-     * @return the reps for each series
-     */
-    private int[] reps(int series) {
-        int[] reps = null;
-        for (int x = 0; x < series; x++) {
-            //TODO : Add validation
-            Input<Integer> rep = new Input<>("How many reps for serie " + x + 1 + " : ", Integer.class);
-            reps[x] = rep.getValue();
-        }
-        return reps;
-    }
-
-    /**
-     * User given weight for each serie
-     *
-     * @param series the number of series of the set
-     * @return the weight for each series
-     */
-    private float[] weight(int series) {
-        float[] weights = null;
-        for (int x = 0; x < series; x++) {
-            //TODO : Add validation
-            Input<Integer> weight = new Input<>("How much weight for serie " + x + 1 + " : ", Integer.class);
-            weights[x] = weight.getValue();
-        }
-        return weights;
-    }
-
-    /**
-     * User given rest time inbetween series
-     *
-     * @param series the number of series of the set
-     * @return the rest time inbetween series
-     */
-    private Time[] rest(int series) {
-        Time[] rest = null;
-        //1 less rest period since no rest after last serie
-        for (int x = 0; x < series - 1; x++) {
-            //TODO : Add validation
-            Input<Integer> minutes = new Input<>("How many rest minutes for serie " + x + 1 + " : ", Integer.class);
-            Input<Integer> seconds = new Input<>("How many rest seconds for serie " + x + 1 + " : ", Integer.class);
-            rest[x] = new Time(0, minutes.getValue(), seconds.getValue());
-        }
-        return rest;
-    }
-
-    /**
-     * Create warmup series
-     * Return a % of the target weight based on how many warmup series
-     * Return a number of reps based on the reps of the series
-     *
-     * @param sets the set to add warmup set
-     */
-    //TODO : Create warmup object
-    private void warmupSets(Sets sets) {
-        Input<Integer> warmupSeries = new Input<>("How many warmup series : ", Integer.class);
-
-        //Return the target weight for the first serie
-        float weight = sets.getWeight()[0];
-
-        if (weight < 45) {
-
-        }
-    }
-
-    /**
      * Add a warmup set to the workout
      *
      * @param workout the current workout
      */
-    private void addWarmupToWorkout(Workout workout) {
-        String name = name();
-        Time time = time();
-        Warmup warmup = new Warmup(name, time);
-
-        workout.addWarmup(warmup);
+    private void addWarmUpToWorkout(Workout workout) {
+        WarmUp warmUp = new WarmUp();
+        workout.addWarmup(warmUp);
         System.out.println("Warm up added successfully.");
     }
 
@@ -213,12 +90,7 @@ class WorkoutManager {
      * @param workout the current workout
      */
     private void addStretchToWorkout(Workout workout) {
-        String name = name();
-        Time time = time();
-        //TODO : Add validation
-        Input<Integer> reps = new Input<>("How many repetitions : ", Integer.class);
-        Stretch stretch = new Stretch(name, time, reps.getValue());
-
+        Stretch stretch = new Stretch();
         workout.addStretch(stretch);
         System.out.println("Stretch added successfully.");
     }
@@ -229,10 +101,9 @@ class WorkoutManager {
      * @param workout the current workout
      */
     private void addExerciseToWorkout(Workout workout) {
-        String name = name();
-        Sets sets = createSet();
-        warmupSets(sets);
-        //TODO : Finish implementation
+        Exercise exercise = new Exercise();
+        workout.addExercise(exercise);
+        System.out.println("Exercise added successfully.");
     }
 
     /**
@@ -241,7 +112,9 @@ class WorkoutManager {
      * @param workout the current workout
      */
     private void addCardioToWorkout(Workout workout) {
-
+        Cardio cardio = new Cardio();
+        workout.addCardio(cardio);
+        System.out.println("Cardio added successfully.");
     }
 
     /**
@@ -250,7 +123,9 @@ class WorkoutManager {
      * @param workout the current workout
      */
     private void addCooldownToWorkout(Workout workout) {
-
+        Cooldown cooldown = new Cooldown();
+        workout.addCooldown(cooldown);
+        System.out.println("Cooldown added successfully.");
     }
 
     /**
