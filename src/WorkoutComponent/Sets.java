@@ -4,39 +4,85 @@ import main.Input;
 import main.Options;
 
 import java.sql.Time;
+import java.util.Arrays;
 
 public class Sets {
     private int series;
     private int[] reps;
-    private float[] weight;
+    private float[] weights;
     private Time[] rest;
 
     public Sets() {
-        seriesInput();
-        repsInput();
-        weightInput();
-        restInput();
+        this.series = seriesInput();
+        this.reps = repsInput();
+        this.weights = weightInput();
+        this.rest = restInput();
     }
 
-    public void seriesInput() {
+    public int seriesInput() {
         Input<Integer> series = new Input<>("How many series : ", Integer.class);
-        this.series = series.getValue();
+        return series.getValue();
     }
 
-    public void repsInput(){
+    public int[] repsInput() {
         reps = new int[series];
         boolean sameValue = sameValues("Same reps for every series? : ");
-
-        int y;
-        for (int x = 0; x < series; x++) {
-            y = x+1;
-            //TODO : Add validation
-            Input<Integer> rep = new Input<>("How many reps for series " + y + " : ", Integer.class);
-            this.reps[x] = rep.getValue();
+        if (sameValue) {
+            Input<Integer> rep = new Input<>("How many reps for every series : ", Integer.class);
+            Arrays.fill(reps, rep.getValue());
+        } else {
+            int y;
+            for (int x = 0; x < series; x++) {
+                y = x + 1;
+                //TODO : Add validation
+                Input<Integer> rep = new Input<>("How many reps for series " + y + " : ", Integer.class);
+                reps[x] = rep.getValue();
+            }
         }
+        return reps;
     }
 
-    private boolean sameValues(String message){
+
+    public float[] weightInput() {
+        weights = new float[series];
+        boolean sameValues = sameValues("Same weights for every series? : ");
+
+        if (sameValues) {
+            Input<Integer> weight = new Input<>("How much weights for every series : ", Integer.class);
+            Arrays.fill(weights, weight.getValue());
+        } else {
+            int y;
+            for (int x = 0; x < series; x++) {
+                y = x + 1;
+                //TODO : Add validation
+                Input<Integer> weight = new Input<>("How much weights for series " + y + " : ", Integer.class);
+                weights[x] = weight.getValue();
+            }
+        }
+        return weights;
+    }
+
+    public Time[] restInput() {
+        rest = new Time[series - 1];
+        boolean sameValues = sameValues("Same rest for every series? : ");
+        if (sameValues) {
+            Input<Integer> minutes = new Input<>("How many minutes for every series  : ", Integer.class);
+            Input<Integer> seconds = new Input<>("How many seconds for every series  : ", Integer.class);
+            Arrays.fill(rest, new Time(0, minutes.getValue(), seconds.getValue()));
+        } else {
+            int y;
+            for (int x = 0; x < series; x++) {
+                y = x + 1;
+                //TODO : Add validation
+                Input<Integer> minutes = new Input<>("How many rest minutes for series " + y + " : ", Integer.class);
+                Input<Integer> seconds = new Input<>("How many rest seconds for series " + y + " : ", Integer.class);
+                rest[x] = new Time(0, minutes.getValue(), seconds.getValue());
+            }
+        }
+        return rest;
+    }
+
+    protected boolean sameValues(String message) {
         String[] opts = {"Yes", "No"};
         Options options = new Options(opts);
         boolean again = true;
@@ -64,29 +110,6 @@ public class Sets {
         return same;
     }
 
-    public void weightInput(){
-        weight = new float[series];
-        int y;
-        for (int x = 0; x < series; x++) {
-            y = x+1;
-            //TODO : Add validation
-            Input<Integer> weight = new Input<>("How much weight for series " + y + " : ", Integer.class);
-            this.weight[x] = weight.getValue();
-        }
-    }
-
-    public void restInput(){
-        rest = new Time[series];
-        int y;
-        for (int x = 0; x < series - 1; x++) {
-             y = x+1;
-            //TODO : Add validation
-            Input<Integer> minutes = new Input<>("How many rest minutes for series " + y + " : ", Integer.class);
-            Input<Integer> seconds = new Input<>("How many rest seconds for series " + y + " : ", Integer.class);
-            this.rest[x] = new Time(0, minutes.getValue(), seconds.getValue());
-        }
-    }
-
     public int getSeries() {
         return series;
     }
@@ -103,12 +126,12 @@ public class Sets {
         this.reps = reps;
     }
 
-    public float[] getWeight() {
-        return weight;
+    public float[] getWeights() {
+        return weights;
     }
 
-    public void setWeight(float[] weight) {
-        this.weight = weight;
+    public void setWeights(float[] weights) {
+        this.weights = weights;
     }
 
     public Time[] getRest() {
