@@ -1,5 +1,9 @@
 package WorkoutComponent;
 
+import main.Input;
+
+import java.sql.Time;
+
 /*
 Parent class for the different workout types
 Each different exercises are filed in a type and added into an array for their type
@@ -30,8 +34,20 @@ public abstract class WorkoutComponent {
         return type;
     }
 
-    public void setType(String type) {
+    protected void setType(String type) {
         this.type = type;
+    }
+
+
+    protected String nameInput(){
+        Input<String> name = new Input<>("Name of the " + type.toLowerCase() + " : ", String.class);
+        return name.getValue();
+    }
+
+    protected Time timeInput(){
+        Input<Integer> minutes = new Input<>("For how much time (minutes) : ", Integer.class);
+        Input<Integer> seconds = new Input<>("For how much time (seconds) : ", Integer.class);
+        return new Time(0, minutes.getValue(), seconds.getValue());
     }
 
 

@@ -10,8 +10,9 @@ public class Stretch extends WorkoutComponent{
 
     public Stretch() {
         super.setType("Stretch");
-        nameInput();
-        timeInput();
+        super.nameInput();
+        this.time = super.timeInput();
+        this.reps = repsInput();
     }
 
     public Stretch(String name, Time time, int reps) {
@@ -20,20 +21,9 @@ public class Stretch extends WorkoutComponent{
         this.reps = reps;
     }
 
-    private void nameInput(){
-        Input<String> name = new Input<>("Name of the stretch : ", String.class);
-        super.setName(name.getValue());
-    }
-
-    private void timeInput(){
-        Input<Integer> minutes = new Input<>("For how much time (minutes) : ", Integer.class);
-        Input<Integer> seconds = new Input<>("For how much time (seconds) : ", Integer.class);
-        this.time = new Time(0, minutes.getValue(), seconds.getValue());
-    }
-
-    private void repsInput(){
+    private int repsInput(){
         Input<Integer> reps = new Input<>("How many repetitions : ", Integer.class);
-        this.reps = reps.getValue();
+        return reps.getValue();
     }
 
     public Time getTime() {

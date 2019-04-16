@@ -1,6 +1,7 @@
 package WorkoutComponent;
 
 import main.Input;
+import main.Options;
 
 import java.sql.Time;
 
@@ -24,6 +25,8 @@ public class Sets {
 
     public void repsInput(){
         reps = new int[series];
+        boolean sameValue = sameValues("Same reps for every series? : ");
+
         int y;
         for (int x = 0; x < series; x++) {
             y = x+1;
@@ -31,6 +34,34 @@ public class Sets {
             Input<Integer> rep = new Input<>("How many reps for series " + y + " : ", Integer.class);
             this.reps[x] = rep.getValue();
         }
+    }
+
+    private boolean sameValues(String message){
+        String[] opts = {"Yes", "No"};
+        Options options = new Options(opts);
+        boolean again = true;
+        boolean same = true;
+
+        while (again) {
+            options.optionsPrinter();
+            Input<String> userInput = new Input<>(message, String.class);
+
+            //Redirect to a feature based on the user input
+            switch (userInput.getValue()) {
+                case "1":
+                    same = true;
+                    again = false;
+                    break;
+                case "2":
+                    same = false;
+                    again = false;
+                    break;
+                default:
+                    System.out.println("Invalid option. Choose a valid option please.");
+                    again = true;
+            }
+        }
+        return same;
     }
 
     public void weightInput(){

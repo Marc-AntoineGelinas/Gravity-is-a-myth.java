@@ -3,7 +3,7 @@ package main;
 public class Options {
     private String[] options;
 
-    Options(String[] options) {
+    public Options(String[] options) {
         this.options = options;
     }
 
@@ -15,7 +15,7 @@ public class Options {
         this.options = options;
     }
 
-    void optionsPrinter() {
+    public void optionsPrinter() {
         System.out.println();
         System.out.println("Select an option");
         int x = 1;

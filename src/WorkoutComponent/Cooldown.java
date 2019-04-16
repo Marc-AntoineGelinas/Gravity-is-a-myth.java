@@ -1,7 +1,5 @@
 package WorkoutComponent;
 
-import main.Input;
-
 import java.sql.Time;
 
 public class Cooldown extends WorkoutComponent{
@@ -9,19 +7,8 @@ public class Cooldown extends WorkoutComponent{
 
     public Cooldown() {
         super.setType("Cooldown");
-        nameInput();
-        timeInput();
-    }
-
-    private void nameInput(){
-        Input<String> name = new Input<>("Name of the cooldown : ", String.class);
-        super.setName(name.getValue());
-    }
-
-    private void timeInput(){
-        Input<Integer> minutes = new Input<>("For how much time (minutes) : ", Integer.class);
-        Input<Integer> seconds = new Input<>("For how much time (seconds) : ", Integer.class);
-        this.time = new Time(0, minutes.getValue(), seconds.getValue());
+        super.nameInput();
+        this.time = super.timeInput();
     }
 
     public Time getTime() {

@@ -12,20 +12,10 @@ public class Cardio extends WorkoutComponent {
 
     public Cardio() {
         super.setType("Cardio");
-        nameInput();
-        timeInput();
+        super.nameInput();
+        this.time = timeInput();
     }
 
-    private void nameInput(){
-        Input<String> name = new Input<>("Name of the cardio : ", String.class);
-        super.setName(name.getValue());
-    }
-
-    private void timeInput(){
-        Input<Integer> minutes = new Input<>("For how much time (minutes) : ", Integer.class);
-        Input<Integer> seconds = new Input<>("For how much time (seconds) : ", Integer.class);
-        this.time = new Time(0, minutes.getValue(), seconds.getValue());
-    }
 
     private void caloriesInput(){
         Input<Integer> calories = new Input<>("How many calories burned : ", Integer.class);
