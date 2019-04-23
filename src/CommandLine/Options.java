@@ -1,4 +1,4 @@
-package main;
+package CommandLine;
 
 public class Options {
     private String[] options;

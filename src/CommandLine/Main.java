@@ -1,4 +1,6 @@
-package main;
+package CommandLine;
+
+import CommandLine.Menus;
 
 public class Main {
 

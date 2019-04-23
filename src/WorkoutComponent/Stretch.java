@@ -1,7 +1,5 @@
 package WorkoutComponent;
 
-import main.Input;
-
 import java.sql.Time;
 
 public class Stretch extends WorkoutComponent{
@@ -10,9 +8,6 @@ public class Stretch extends WorkoutComponent{
 
     public Stretch() {
         super.setType("Stretch");
-        super.nameInput();
-        this.time = super.timeInput();
-        this.reps = repsInput();
     }
 
     public Stretch(String name, Time time, int reps) {
@@ -21,10 +16,11 @@ public class Stretch extends WorkoutComponent{
         this.reps = reps;
     }
 
-    private int repsInput(){
-        Input<Integer> reps = new Input<>("How many repetitions : ", Integer.class);
-        return reps.getValue();
+    @Override
+    public String toString() {
+        return String.format("%s - for %tT - %d reps", super.getName(), getTime(), getReps());
     }
+
 
     public Time getTime() {
         return time;

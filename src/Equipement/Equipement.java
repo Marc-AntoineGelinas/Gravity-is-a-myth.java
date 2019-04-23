@@ -1,6 +1,6 @@
 package Equipement;
 
-import main.Validable;
+import Main.Validable;
 
 public abstract class Equipement implements Validable {
     private String unit;

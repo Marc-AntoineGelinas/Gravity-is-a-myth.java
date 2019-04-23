@@ -1,21 +1,41 @@
 package WorkoutComponent;
 
 public class Exercise extends WorkoutComponent {
-    private Sets sets;
+    private int series;
+    private Sets[] sets;
     private Sets warmUpSets;
 
     public Exercise() {
         super.setType("Exercise");
-        super.nameInput();
-        this.sets = new Sets();
-        this.warmUpSets = new WarmUpSets();
     }
 
-    public Sets getSets() {
+    public Exercise(int series, Sets[] sets, Sets warmUpSets) {
+        this.series = series;
+        this.sets = sets;
+        this.warmUpSets = warmUpSets;
+    }
+
+    public Exercise(String name, int series, Sets[] sets, Sets warmUpSets) {
+        //Type is set as default
+        super(name, "Exercise");
+        this.series = series;
+        this.sets = sets;
+        this.warmUpSets = warmUpSets;
+    }
+
+    public int getSeries() {
+        return series;
+    }
+
+    public void setSeries(int series) {
+        this.series = series;
+    }
+
+    public Sets[] getSets() {
         return sets;
     }
 
-    public void setSets(Sets sets) {
+    public void setSets(Sets[] sets) {
         this.sets = sets;
     }
 

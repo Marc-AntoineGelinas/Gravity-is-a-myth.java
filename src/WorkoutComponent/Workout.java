@@ -1,10 +1,10 @@
 package WorkoutComponent;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Workout {
-    private LocalDate workoutDateTime;
+    private String workoutDateTime;
     private ArrayList<WarmUp> warmUpList = new ArrayList<WarmUp>();
     private ArrayList<Stretch> stretchList = new ArrayList<Stretch>();
     private ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
@@ -13,14 +13,14 @@ public class Workout {
 
 
     public Workout() {
-        this.workoutDateTime = LocalDate.now();
+        this.workoutDateTime = new Date().toString();
     }
 
-    public LocalDate getWorkoutDateTime() {
+    public String getWorkoutDateTime() {
         return workoutDateTime;
     }
 
-    public void setWorkoutDateTime(LocalDate workoutDateTime) {
+    public void setWorkoutDateTime(String workoutDateTime) {
         this.workoutDateTime = workoutDateTime;
     }
 

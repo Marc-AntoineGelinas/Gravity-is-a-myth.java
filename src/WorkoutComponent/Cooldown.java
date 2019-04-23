@@ -7,8 +7,11 @@ public class Cooldown extends WorkoutComponent{
 
     public Cooldown() {
         super.setType("Cooldown");
-        super.nameInput();
-        this.time = super.timeInput();
+    }
+
+    public Cooldown(String name, Time time) {
+        super(name, "Cooldown");
+        this.time = time;
     }
 
     public Time getTime() {

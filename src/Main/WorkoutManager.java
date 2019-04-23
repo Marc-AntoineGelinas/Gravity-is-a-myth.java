@@ -1,31 +1,19 @@
-package main;
+package Main;
 
+import CommandLine.WorkoutManagerPrompts;
 import WorkoutComponent.*;
 
-class WorkoutManager {
+public class WorkoutManager {
 
     /**
-     * Add a workout or exit to the main menu
+     * Add a workout or exit to the Main menu
      */
-    void createWorkout() {
-        boolean again = true;
-        while (again) {
-            again = false;
-            System.out.println();
-            System.out.println("Create new workout?");
-            Input<String> userInput = new Input<>("yes/no", String.class);
+    public void addWorkout() {
+        WorkoutManagerPrompts prompts = new WorkoutManagerPrompts();
 
-            //TODO : Ajouter validation
-            if (userInput.getValue().equals("yes")) {
-                Workout workout = new Workout();
-                configureWorkout(workout);
-            } else if (userInput.getValue().equals("no")) {
-                Menus menus = new Menus();
-                menus.mainMenu();
-            } else {
-                System.out.println("Invalid option. Choose an option again please");
-                again = true;
-            }
+        if (prompts.addWorkOutPrompt()) {
+            Workout workout = new Workout();
+            configureWorkout(workout);
         }
     }
 
@@ -37,40 +25,30 @@ class WorkoutManager {
      * @param workout the current workout
      */
     private void configureWorkout(Workout workout) {
-        String[] opts = {"Add warmup", "Add stretch", "Add exercise", "Add cardio", "Add cooldown", "Finish workout"};
-        Options options = new Options(opts);
-        boolean again = true;
-
-        while (again) {
-            options.optionsPrinter();
-            Input<String> userInput = new Input<>("Choose an option : ", String.class);
-
-
-            switch (userInput.getValue()) {
-                case "1":
-                    addWarmUpToWorkout(workout);
-                    break;
-                case "2":
-                    addStretchToWorkout(workout);
-                    break;
-                case "3":
-                    addExerciseToWorkout(workout);
-                    break;
-                case "4":
-                    addCardioToWorkout(workout);
-                    break;
-                case "5":
-                    addCooldownToWorkout(workout);
-                    break;
-                case "6":
-                    again = false;
-                    finishWorkout(workout);
-                    break;
-                default:
-                    System.out.println("Invalid option. Choose an option again please.");
-                    again = true;
-            }
+        WorkoutManagerPrompts prompts = new WorkoutManagerPrompts();
+        switch (prompts.configureWorkOutPrompt()) {
+            case 1:
+                addWarmUpToWorkout(workout);
+                break;
+            case 2:
+                addStretchToWorkout(workout);
+                break;
+            case 3:
+                addExerciseToWorkout(workout);
+                break;
+            case 4:
+                addCardioToWorkout(workout);
+                break;
+            case 5:
+                addCooldownToWorkout(workout);
+                break;
+            case 6:
+                finishWorkout(workout);
+                break;
+            default:
+                System.out.println("Invalid option. Choose an option again please.");
         }
+
     }
 
     /**
@@ -79,8 +57,13 @@ class WorkoutManager {
      * @param workout the current workout
      */
     private void addWarmUpToWorkout(Workout workout) {
+        WorkoutManagerPrompts p = new WorkoutManagerPrompts();
         WarmUp warmUp = new WarmUp();
+        warmUp.setName(p.componentNamePrompt("Name of the warm up : "));
+        warmUp.setTime(p.componentTimePrompt());
+
         workout.addWarmup(warmUp);
+        System.out.println(warmUp.toString());
         System.out.println("Warm up added successfully.");
     }
 
@@ -92,6 +75,7 @@ class WorkoutManager {
     private void addStretchToWorkout(Workout workout) {
         Stretch stretch = new Stretch();
         workout.addStretch(stretch);
+        System.out.println(stretch.toString());
         System.out.println("Stretch added successfully.");
     }
 
@@ -133,7 +117,6 @@ class WorkoutManager {
      *
      * @param workout the current workout
      */
-
     private void finishWorkout(Workout workout) {
 
     }
