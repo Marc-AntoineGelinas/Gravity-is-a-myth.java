@@ -9,9 +9,10 @@ public class WorkoutManagerPrompts {
 
     /**
      * Confirm if user wants to add a new workout
+     *
      * @return yes, return true. no, go back to the main menu
      */
-    public boolean addWorkOutPrompt(){
+    public boolean addWorkOutPrompt() {
         boolean again = true;
         while (again) {
             again = false;
@@ -38,29 +39,68 @@ public class WorkoutManagerPrompts {
         return false;
     }
 
-     /**
-      * User input for which component to add to the workout
+    /**
+     * User input for which component to add to the workout
+     *
      * @return the number associated with the component to add
      */
-    public int configureWorkOutPrompt(){
-        String[] opts = {"Add warmup", "Add stretch", "Add exercise", "Add cardio", "Add cooldown", "Finish workout"};
+    public int configureWorkOutPrompt() {
+        String[] opts = {"View Options","Add warmup", "Add stretch", "Add exercise", "Add cardio", "Add cooldown", "Finish workout"};
         Options options = new Options(opts);
 
-            options.optionsPrinter();
-            Input<Integer> userInput = new Input<>("Choose an option : ", Integer.class);
-            return userInput.getValue();
+        options.optionsPrinter();
+        Input<Integer> name = new Input<>("Choose an option : ", Integer.class);
+        return name.getValue();
     }
 
-    public String componentNamePrompt(String message){
+    /**
+     * User input for the name of the component
+     *
+     * @param message Message displayed to the user for the input
+     * @return the name of the component
+     */
+    public String componentNamePrompt(String message) {
         Input<String> userInput = new Input<>(message, String.class);
         return userInput.getValue();
     }
 
-    public Time componentTimePrompt(){
+    /**
+     * User input for the time of a component
+     *
+     * @return the time spent for the component
+     */
+    public Time componentTimePrompt() {
         Input<Integer> hours = new Input<>("For how many hours : ", Integer.class);
         Input<Integer> minutes = new Input<>("For how many minutes : ", Integer.class);
         Input<Integer> seconds = new Input<>("For how many seconds : ", Integer.class);
 
         return new Time(hours.getValue(), minutes.getValue(), seconds.getValue());
+    }
+
+    /**
+     * User input for the number of reps of a component
+     *
+     * @return the numbers of repetitions for a component
+     */
+    public int componentRepsPrompt() {
+        Input<Integer> reps = new Input<>("For how many repetitions : ", Integer.class);
+        return reps.getValue();
+    }
+
+    public int componentCaloriesPrompt() {
+        Input<Integer> calories = new Input<>("How many calories spent : ", Integer.class);
+        return calories.getValue();
+    }
+
+    public float componentDistancePrompt() {
+        Input<Float> distance = new Input<>("Distance traveled : ", Float.class);
+        return distance.getValue();
+    }
+
+    public String componentDistanceUnitPrompt() {
+        //TODO : Add validation
+        //TODO : Add as a setting
+        Input<String> distanceUnit = new Input<>("Distance unit (km/miles) : ", String.class);
+        return distanceUnit.getValue();
     }
 }
