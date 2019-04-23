@@ -6,6 +6,7 @@ public class Cardio extends WorkoutComponent {
     private Time time;
     private int calories;
     private float distance;
+    //TODO : Add as a setting
     private String distanceUnit;
 
     public Cardio() {
@@ -18,6 +19,11 @@ public class Cardio extends WorkoutComponent {
         this.calories = calories;
         this.distance = distance;
         this.distanceUnit = distanceUnit;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s - %s - %tT - %d calories - %.2f%s",super.getType(), super.getName(), getTime(), getCalories(), getDistance(),getDistanceUnit());
     }
 
     public Time getTime() {

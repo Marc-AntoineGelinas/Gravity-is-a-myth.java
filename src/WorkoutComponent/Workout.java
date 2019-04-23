@@ -12,6 +12,18 @@ public class Workout {
     private ArrayList<Cooldown> cooldownList = new ArrayList<Cooldown>();
 
 
+    public void print() {
+        warmUpList.forEach(warmUp -> System.out.println(warmUp.toString()));
+        System.out.println();
+        stretchList.forEach(warmUp -> System.out.println(warmUp.toString()));
+        System.out.println();
+        exerciseList.forEach(warmUp -> System.out.println(warmUp.toString()));
+        System.out.println();
+        cardioList.forEach(warmUp -> System.out.println(warmUp.toString()));
+        System.out.println();
+        cooldownList.forEach(warmUp -> System.out.println(warmUp.toString()));
+    }
+
     public Workout() {
         this.workoutDateTime = new Date().toString();
     }

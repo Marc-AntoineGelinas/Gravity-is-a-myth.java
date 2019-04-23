@@ -18,7 +18,7 @@ public class Stretch extends WorkoutComponent{
 
     @Override
     public String toString() {
-        return String.format("%s - for %tT - %d reps", super.getName(), getTime(), getReps());
+        return String.format("%s - %s - %tT - %d repetitions",super.getType(), super.getName(), getTime(), getReps());
     }
 
 
