@@ -1,49 +1,62 @@
 package WorkoutComponent;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Exercise extends WorkoutComponent {
-    private int series;
-    private Sets[] sets;
-    private Sets warmUpSets;
+    private int setsCount;
+    private List<Sets> sets;
+    //TODO : warm up sets
+    //private Sets warmUpSets;
 
     public Exercise() {
         super.setType("Exercise");
+        sets = new LinkedList<Sets>();
     }
 
-    public Exercise(int series, Sets[] sets, Sets warmUpSets) {
-        this.series = series;
+    public Exercise(int setsCount, List<Sets> sets, Sets warmUpSets) {
+        this.setsCount = setsCount;
         this.sets = sets;
-        this.warmUpSets = warmUpSets;
+        //this.warmUpSets = warmUpSets;
     }
 
-    public Exercise(String name, int series, Sets[] sets, Sets warmUpSets) {
+    public Exercise(String name, int setsCount, List<Sets> sets, Sets warmUpSets) {
         //Type is set as default
         super(name, "Exercise");
-        this.series = series;
+        this.setsCount = setsCount;
         this.sets = sets;
-        this.warmUpSets = warmUpSets;
+        //this.warmUpSets = warmUpSets;
     }
 
-    public int getSeries() {
-        return series;
+    public int getSetsCount() {
+        return setsCount;
     }
 
-    public void setSeries(int series) {
-        this.series = series;
+    public void setSetsCount(int setsCount) {
+        this.setsCount = setsCount;
     }
 
-    public Sets[] getSets() {
+    public List<Sets> getSets() {
         return sets;
     }
 
-    public void setSets(Sets[] sets) {
+    public void setSets(List<Sets> sets) {
         this.sets = sets;
     }
 
-    public Sets getWarmUpSets() {
-        return warmUpSets;
+    public void addSets(Sets s){
+        this.sets.add(s);
     }
 
-    public void setWarmUpSets(Sets warmUpSets) {
-        this.warmUpSets = warmUpSets;
+    public void removeSets(Sets s){
+        this.sets.remove(s);
     }
+
+//    public Sets getWarmUpSets() {
+//        return warmUpSets;
+//    }
+//
+//    public void setWarmUpSets(Sets warmUpSets) {
+//        this.warmUpSets = warmUpSets;
+//    }
 }

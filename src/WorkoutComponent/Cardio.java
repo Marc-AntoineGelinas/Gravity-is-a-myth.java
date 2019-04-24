@@ -13,7 +13,7 @@ public class Cardio extends WorkoutComponent {
         super.setType("Cardio");
     }
 
-    public Cardio(String name, String type, Time time, int calories, float distance, String distanceUnit) {
+    public Cardio(String name, Time time, int calories, float distance, String distanceUnit) {
         super(name, "Cardio");
         this.time = time;
         this.calories = calories;

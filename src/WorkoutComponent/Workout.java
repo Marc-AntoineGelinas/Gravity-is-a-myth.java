@@ -1,5 +1,7 @@
 package WorkoutComponent;
 
+import CommandLine.WorkoutCL;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,17 +13,17 @@ public class Workout {
     private ArrayList<Cardio> cardioList = new ArrayList<Cardio>();
     private ArrayList<Cooldown> cooldownList = new ArrayList<Cooldown>();
 
-
+    /**
+    Print all the components array
+     */
+    //TODO : Change from command line
     public void print() {
-        warmUpList.forEach(warmUp -> System.out.println(warmUp.toString()));
-        System.out.println();
-        stretchList.forEach(warmUp -> System.out.println(warmUp.toString()));
-        System.out.println();
-        exerciseList.forEach(warmUp -> System.out.println(warmUp.toString()));
-        System.out.println();
-        cardioList.forEach(warmUp -> System.out.println(warmUp.toString()));
-        System.out.println();
-        cooldownList.forEach(warmUp -> System.out.println(warmUp.toString()));
+        WorkoutCL w = new WorkoutCL();
+        w.print(warmUpList);
+        w.print(stretchList);
+        w.print(exerciseList);
+        w.print(cardioList);
+        w.print(cooldownList);
     }
 
     public Workout() {

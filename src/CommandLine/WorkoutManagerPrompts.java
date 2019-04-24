@@ -1,5 +1,7 @@
 package CommandLine;
 
+import WorkoutComponent.Sets;
+
 import java.sql.Time;
 
 /**
@@ -45,7 +47,7 @@ public class WorkoutManagerPrompts {
      * @return the number associated with the component to add
      */
     public int configureWorkOutPrompt() {
-        String[] opts = {"View Options","Add warmup", "Add stretch", "Add exercise", "Add cardio", "Add cooldown", "Finish workout"};
+        String[] opts = {"View Options", "Add warmup", "Add stretch", "Add exercise", "Add cardio", "Add cooldown", "Finish workout"};
         Options options = new Options(opts);
 
         options.optionsPrinter();
@@ -77,6 +79,13 @@ public class WorkoutManagerPrompts {
         return new Time(hours.getValue(), minutes.getValue(), seconds.getValue());
     }
 
+    public Time componentRestPrompt() {
+        Input<Integer> minutes = new Input<>("How many minutes of rest : ", Integer.class);
+        Input<Integer> seconds = new Input<>("How many seconds of rest : ", Integer.class);
+
+        return new Time(0, minutes.getValue(), seconds.getValue());
+    }
+
     /**
      * User input for the number of reps of a component
      *
@@ -102,5 +111,29 @@ public class WorkoutManagerPrompts {
         //TODO : Add as a setting
         Input<String> distanceUnit = new Input<>("Distance unit (km/miles) : ", String.class);
         return distanceUnit.getValue();
+    }
+
+    public int componentSeriesCountPrompt() {
+        //TODO : Add validation
+        Input<Integer> seriesCount = new Input<>("How many sets? : ", Integer.class);
+        return seriesCount.getValue();
+    }
+
+    public Sets componentAddSet(int currentSet, boolean lastSet) {
+        Sets s = new Sets();
+
+        System.out.println("For set " + currentSet);
+
+        s.setReps(componentRepsPrompt());
+        s.setWeight(componentWeightPrompt());
+        if (!lastSet)
+            s.setRest(componentRestPrompt());
+
+        return s;
+    }
+
+    public float componentWeightPrompt() {
+        Input<Float> weight = new Input<>("How much weight? : ", Float.class);
+        return weight.getValue();
     }
 }

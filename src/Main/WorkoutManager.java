@@ -1,6 +1,7 @@
 package Main;
 
 import CommandLine.WorkoutManagerPrompts;
+import Tests.TestComponents;
 import WorkoutComponent.*;
 
 public class WorkoutManager {
@@ -13,6 +14,12 @@ public class WorkoutManager {
 
         if (prompts.addWorkOutPrompt()) {
             Workout workout = new Workout();
+
+            //Add dummy values for testing
+            //TODO : disable
+            TestComponents tests = new TestComponents();
+            tests.addTestComponents(workout);
+
             configureWorkout(workout);
         }
     }
@@ -63,7 +70,6 @@ public class WorkoutManager {
             System.out.println("The workout is currently empty.");
          else
             System.out.println("The current workout is : ");
-            System.out.println();
             workout.print();
     }
 
@@ -112,6 +118,17 @@ public class WorkoutManager {
     private void addExerciseToWorkout(Workout workout) {
         WorkoutManagerPrompts p = new WorkoutManagerPrompts();
         Exercise exercise = new Exercise();
+        boolean lastSet = false;
+
+        exercise.setName(p.componentNamePrompt("Name of the exercise : "));
+        exercise.setSetsCount(p.componentSeriesCountPrompt());
+
+        for (int x = 0; x<exercise.getSetsCount();x++){
+            if (x == exercise.getSetsCount()-1)
+                lastSet = true;
+            exercise.addSets(p.componentAddSet(x+1, lastSet));
+        }
+
 
         workout.addExercise(exercise);
         System.out.println("Exercise added successfully.");
