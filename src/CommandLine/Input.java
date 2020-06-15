@@ -1,4 +1,4 @@
-package main;
+package CommandLine;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

@@ -1,5 +1,8 @@
-package main;
+package CommandLine;
 
+import CommandLine.Input;
+import CommandLine.Menus;
+import CommandLine.Options;
 import Equipement.Plate;
 import Equipement.Equipement;
 

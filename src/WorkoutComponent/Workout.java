@@ -1,26 +1,40 @@
 package WorkoutComponent;
 
-import java.time.LocalDate;
+import CommandLine.WorkoutCL;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Workout {
-    private LocalDate workoutDateTime;
+    private String workoutDateTime;
     private ArrayList<WarmUp> warmUpList = new ArrayList<WarmUp>();
     private ArrayList<Stretch> stretchList = new ArrayList<Stretch>();
     private ArrayList<Exercise> exerciseList = new ArrayList<Exercise>();
     private ArrayList<Cardio> cardioList = new ArrayList<Cardio>();
     private ArrayList<Cooldown> cooldownList = new ArrayList<Cooldown>();
 
-
-    public Workout() {
-        this.workoutDateTime = LocalDate.now();
+    /**
+    Print all the components array
+     */
+    //TODO : Change from command line
+    public void print() {
+        WorkoutCL w = new WorkoutCL();
+        w.print(warmUpList);
+        w.print(stretchList);
+        w.print(exerciseList);
+        w.print(cardioList);
+        w.print(cooldownList);
     }
 
-    public LocalDate getWorkoutDateTime() {
+    public Workout() {
+        this.workoutDateTime = new Date().toString();
+    }
+
+    public String getWorkoutDateTime() {
         return workoutDateTime;
     }
 
-    public void setWorkoutDateTime(LocalDate workoutDateTime) {
+    public void setWorkoutDateTime(String workoutDateTime) {
         this.workoutDateTime = workoutDateTime;
     }
 

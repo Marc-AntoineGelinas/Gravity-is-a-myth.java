@@ -1,6 +1,5 @@
 package WorkoutComponent;
 
-import main.Input;
 
 import java.sql.Time;
 
@@ -9,8 +8,16 @@ public class WarmUp extends WorkoutComponent {
 
     public WarmUp() {
         super.setType("Warm up");
-        super.nameInput();
-        this.time = super.timeInput();
+    }
+
+    public WarmUp(String name, Time time) {
+        super(name, "Warm up");
+        this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s - %s - %tT",super.getType(), super.getName(), getTime());
     }
 
     public Time getTime() {

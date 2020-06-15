@@ -1,37 +1,30 @@
 package WorkoutComponent;
 
-import main.Input;
-
 import java.sql.Time;
 
 public class Cardio extends WorkoutComponent {
     private Time time;
     private int calories;
     private float distance;
+    //TODO : Add as a setting
     private String distanceUnit;
 
     public Cardio() {
         super.setType("Cardio");
-        super.nameInput();
-        this.time = timeInput();
     }
 
-
-    private void caloriesInput(){
-        Input<Integer> calories = new Input<>("How many calories burned : ", Integer.class);
-        this.calories = calories.getValue();
+    public Cardio(String name, Time time, int calories, float distance, String distanceUnit) {
+        super(name, "Cardio");
+        this.time = time;
+        this.calories = calories;
+        this.distance = distance;
+        this.distanceUnit = distanceUnit;
     }
 
-    private void distanceInput(){
-        Input<Float> distance = new Input<>("Distance traveled : ", Float.class);
-        this.distance = distance.getValue();
+    @Override
+    public String toString() {
+        return String.format("%s - %s - %tT - %d calories - %.2f%s",super.getType(), super.getName(), getTime(), getCalories(), getDistance(),getDistanceUnit());
     }
-
-    private void distanceUnitInput(){
-        Input<String> distanceUnit = new Input<>("Distance unit (km/m) : ", String.class);
-        this.distanceUnit = distanceUnit.getValue();
-    }
-
 
     public Time getTime() {
         return time;
@@ -57,7 +50,7 @@ public class Cardio extends WorkoutComponent {
         this.distance = distance;
     }
 
-    public String isDistanceUnit() {
+    public String getDistanceUnit() {
         return distanceUnit;
     }
 

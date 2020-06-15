@@ -1,11 +1,13 @@
-package main;
+package CommandLine;
 
-class Menus {
+import Main.WorkoutManager;
+
+public class Menus {
     /**
      * Main menu for the application
      * Allow to navigate to the different features
      */
-    void mainMenu() {
+    public void mainMenu() {
         String[] opts = {"Log in a new workout", "Calculate warm up Sets", "See a previous workout", "Settings", "Exit"};
         Options options = new Options(opts);
         boolean again = true;
@@ -45,7 +47,7 @@ class Menus {
      */
     private void newWorkoutMenu() {
         WorkoutManager workout = new WorkoutManager();
-        workout.createWorkout();
+        workout.addWorkout();
     }
 
     /**
